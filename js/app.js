@@ -1,13 +1,12 @@
 /*
+ * Global Scope
+ */
+ const deck = document.querySelector(.deck); /**Selects entire deck**/
+
+/*
  * Create a list that holds all of your cards
  */
-const deck = document.querySelector(.deck);
-const cardList = [
-  "fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o",
-  "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt",
-  "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf",
-  "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"
-]
+const singleCards = document.querySelectorAll(.deck > .card); /**Selects individual cards**/
 
 /*
  * Display the cards on the page
@@ -31,11 +30,14 @@ function shuffle(array) {
     return array;
 }
 
-function displayCards() {
-  for (let card of cards) {
-    
+function displayCards() { /**Declare function displaying cards**/
+  for (let card of cards) { /**Loop through each card**/
+    deck.innerHTML = ""; /**Create card HTML**/
   }
+  deck.appendChild(card) /**Adds HTML to the deck !!MAY NOT WORK UNLESS IN FOR LOOP!! **/
 }
+displayCards(); /**Call function**/
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
