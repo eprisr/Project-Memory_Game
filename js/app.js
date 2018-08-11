@@ -1,6 +1,5 @@
 // GLOBAL SCOPE //
- const deck = document.querySelector(.deck); // Selects entire deck
- const singleCards = document.querySelectorAll(.deck > .card); // Selects individual cards
+ const deck = document.querySelector('.deck'); // Selects entire deck
  let openCards = []; // List of open cards
 
 
@@ -8,7 +7,7 @@
 /*
  * Create a list that holds all of your cards
  */
-// List in Global Scope
+ const singleCards = Array.from(document.querySelectorAll('.deck li')); //Selects individual cards and makes list
 
 /*
  * Display the cards on the page
@@ -33,10 +32,10 @@ function shuffle(array) {
 }
 
 function displayCards() { // Declare function displaying cards
-  for (let card of cards) { // Loop through each card
-    deck.innerHTML = ""; // Create card HTML
+  shuffle(singleCards);
+  for (let card of singleCards) { // Loop through each card
+    deck.appendChild(card)
   }
-  deck.appendChild(card) // Adds HTML to the deck !!MAY NOT WORK UNLESS IN FOR LOOP!!
 }
 displayCards(); // Call function
 
@@ -53,27 +52,28 @@ displayCards(); // Call function
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-deck.addEventListener('click' function(evt) { // Card Clicked
-  showCard ();
-  openCards.push();
+deck.addEventListener('click', function(evt) { // Card Clicked
+  const clickCard = evt.target;
+  showCard(clickCard);
+  openCard(clickCard);
+});
+
+function showCard(clickCard) { // Show card & keep open to be checked for match
+  clickCard.classList.toggle('show');
+  clickCard.classList.toggle('open');
+}
+
+function openCard(clickCard) { // Adds to list of open cards
+  openCards.push(clickCard);
     if (openCards === 2) {
       checkMatchCard();
       moveCount();
     } else {
       closeCard();
     }
-});
-
-function showCard(open) { // Show card & keep open to be checked for match
-  open.classList.toggle('show');
-  open.classList.toggle('open');
 }
 
-function openCard() { // Adds to list of open cards
-
-}
-
-function checkMatchCard() { // Check for match
+/*function checkMatchCard() { // Check for match
 
 }
 
@@ -92,3 +92,4 @@ function moveCount() { //Counts moves
 function gameComplete() { //Alert
 
 }
+*/
