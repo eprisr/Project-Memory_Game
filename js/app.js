@@ -53,9 +53,12 @@ displayCards(); // Call function
  */
 
 deck.addEventListener('click', function(evt) { // Card Clicked
-  const clickCard = evt.target;
+  const clickCard = evt.target; // Target clicked card
   showCard(clickCard);
   openCard(clickCard);
+  if (openCards.length === 2) {
+    checkMatchCard();
+  }
 });
 
 function showCard(clickCard) { // Show card & keep open to be checked for match
@@ -63,29 +66,31 @@ function showCard(clickCard) { // Show card & keep open to be checked for match
   clickCard.classList.toggle('open');
 }
 
-function openCard(clickCard) { // Adds to list of open cards
-  openCards.push(clickCard);
-    if (openCards === 2) {
-      checkMatchCard();
-      moveCount();
-    } else {
-      closeCard();
-    }
+function openCard() { // Adds to list of open cards
+  openCards.push('clickCard');
 }
 
-/*function checkMatchCard() { // Check for match
-
+function checkMatchCard() { // Check for match
+  if (openCards[0] === openCard[1]) {
+    openCards[0].classList.toggle('match');
+    openCards[1].classList.toggle('match');
+  } else {
+    closeCards();
+  }
+  /*moveCount();
+  if (openCards === 8) {
+    gameComplete();
+  }
+  */
 }
 
-function matchCard() { // Cards matched
-
+function closeCards() { // Close cards if cards don't match
+  openCards.classList.remove('show', 'open');
+  openCards.classList.remove('show', 'open');
+  //openCards = [];
 }
 
-function closeCard() { // Cards don't match
-
-}
-
-function moveCount() { //Counts moves
+/*function moveCount() { //Counts moves
 
 }
 
