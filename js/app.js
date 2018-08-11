@@ -1,12 +1,14 @@
-/*
- * Global Scope
- */
- const deck = document.querySelector(.deck); /**Selects entire deck**/
+// GLOBAL SCOPE //
+ const deck = document.querySelector(.deck); // Selects entire deck
+ const singleCards = document.querySelectorAll(.deck > .card); // Selects individual cards
+ let openCards = []; // List of open cards
 
+
+//DECK, CARDS, SHUFFLE//
 /*
  * Create a list that holds all of your cards
  */
-const singleCards = document.querySelectorAll(.deck > .card); /**Selects individual cards**/
+// List in Global Scope
 
 /*
  * Display the cards on the page
@@ -30,14 +32,16 @@ function shuffle(array) {
     return array;
 }
 
-function displayCards() { /**Declare function displaying cards**/
-  for (let card of cards) { /**Loop through each card**/
-    deck.innerHTML = ""; /**Create card HTML**/
+function displayCards() { // Declare function displaying cards
+  for (let card of cards) { // Loop through each card
+    deck.innerHTML = ""; // Create card HTML
   }
-  deck.appendChild(card) /**Adds HTML to the deck !!MAY NOT WORK UNLESS IN FOR LOOP!! **/
+  deck.appendChild(card) // Adds HTML to the deck !!MAY NOT WORK UNLESS IN FOR LOOP!!
 }
-displayCards(); /**Call function**/
+displayCards(); // Call function
 
+
+// EVENT LISTENERS FOR CLICK, SHOW, OPEN, MATCH, COUNTER //
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -48,3 +52,43 @@ displayCards(); /**Call function**/
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+deck.addEventListener('click' function(evt) { // Card Clicked
+  showCard ();
+  openCards.push();
+    if (openCards === 2) {
+      checkMatchCard();
+      moveCount();
+    } else {
+      closeCard();
+    }
+});
+
+function showCard(open) { // Show card & keep open to be checked for match
+  open.classList.toggle('show');
+  open.classList.toggle('open');
+}
+
+function openCard() { // Adds to list of open cards
+
+}
+
+function checkMatchCard() { // Check for match
+
+}
+
+function matchCard() { // Cards matched
+
+}
+
+function closeCard() { // Cards don't match
+
+}
+
+function moveCount() { //Counts moves
+
+}
+
+function gameComplete() { //Alert
+
+}
