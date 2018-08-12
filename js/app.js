@@ -7,7 +7,7 @@
 /*
  * Create a list that holds all of your cards
  */
- const singleCards = Array.from(document.querySelectorAll('.deck li')); //Selects individual cards and makes list
+ const singleCards = Array.from(document.querySelectorAll('.card')); //Selects individual cards and makes list
 
 /*
  * Display the cards on the page
@@ -54,10 +54,12 @@ displayCards(); // Call function
 
 deck.addEventListener('click', function(evt) { // Card Clicked
   const clickCard = evt.target; // Target clicked card
-  showCard(clickCard);
-  openCard(clickCard);
-  if (openCards.length === 2) {
-    checkMatchCard();
+  if (openCards.length < 2) {
+    showCard(clickCard);
+    openCard(clickCard);
+    if (openCards.length === 2) {
+      checkMatchCard();
+    }
   }
 });
 
@@ -66,14 +68,15 @@ function showCard(clickCard) { // Show card & keep open to be checked for match
   clickCard.classList.toggle('open');
 }
 
-function openCard() { // Adds to list of open cards
-  openCards.push('clickCard');
+function openCard(clickCard) { // Adds to list of open cards
+  openCards.push(clickCard);
 }
 
 function checkMatchCard() { // Check for match
-  if (openCards[0] === openCard[1]) {
+  if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
     openCards[0].classList.toggle('match');
     openCards[1].classList.toggle('match');
+    openCards = [];
   } else {
     closeCards();
   }
@@ -85,9 +88,11 @@ function checkMatchCard() { // Check for match
 }
 
 function closeCards() { // Close cards if cards don't match
-  openCards.classList.remove('show', 'open');
-  openCards.classList.remove('show', 'open');
-  //openCards = [];
+  setTimeout(function() {
+    showCard(openCards[0]);
+    showCard(openCards[1]);
+    openCards = [];
+  }, 1000);
 }
 
 /*function moveCount() { //Counts moves
