@@ -1,6 +1,6 @@
 let openCards = []; //List to push opened cards to
 const deck = document.querySelector('.deck');
-
+let moves = 0;
 
 /*
  * Create a list that holds all of your cards
@@ -87,8 +87,8 @@ function checkMatchCard(clickedCard) {
   } else {
     closeCards(clickedCard);
   }
-  /*moveCount();
-  if (openCards === 8) {
+  moveCounter();
+  /*if (openCards === 8) {
     gameComplete();
   }
   */
@@ -103,11 +103,13 @@ function closeCards(clickedCard) { // Close cards if cards don't match
     openCards = [];
   }, 1000);
 }
-/*
+
 function moveCounter() {
-
+  moves++
+  let moveCount = document.querySelector('.moves');
+  moveCount.innerHTML = moves;
 }
-
+/*
 function gameComplete(){
 
 }
