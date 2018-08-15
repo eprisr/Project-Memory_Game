@@ -1,13 +1,11 @@
-// GLOBAL SCOPE //
- const deck = document.querySelector('.deck'); // Selects entire deck
- let openCards = []; // List of open cards
+let openCards = []; //List to push opened cards to
+const deck = document.querySelector('.deck');
 
 
-//DECK, CARDS, SHUFFLE//
 /*
  * Create a list that holds all of your cards
  */
- const singleCards = Array.from(document.querySelectorAll('.card')); //Selects individual cards and makes list
+const cards = document.querySelectorAll('.deck li');
 
 /*
  * Display the cards on the page
@@ -31,16 +29,18 @@ function shuffle(array) {
     return array;
 }
 
-function displayCards() { // Declare function displaying cards
-  shuffle(singleCards);
-  for (let card of singleCards) { // Loop through each card
-    deck.appendChild(card)
+function displayShuffle() {
+  let arrayCards = [];
+  for(card of cards) {
+    arrayCards.push(card);
+  }
+  let shuffled = shuffle(arrayCards);
+  for(card of shuffled) {
+    deck.appendChild(card);
   }
 }
-displayCards(); // Call function
+displayShuffle();
 
-
-// EVENT LISTENERS FOR CLICK, SHOW, OPEN, MATCH, COUNTER //
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -52,33 +52,40 @@ displayCards(); // Call function
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-deck.addEventListener('click', function(evt) { // Card Clicked
-  const clickCard = evt.target; // Target clicked card
+const cardClicked = function(evt) { //functionality after card is clicked
+  const clickedCard = evt.target;
   if (openCards.length < 2) {
-    showCard(clickCard);
-    openCard(clickCard);
+    showCard(clickedCard);
+    addOpenCard(clickedCard);
     if (openCards.length === 2) {
-      checkMatchCard();
+      checkMatchCard(clickedCard);
+      //moveCounter();
     }
-  }
+  };
+};
+
+cards.forEach(function (card) { //Loops through cards and add eventListener
+  card.addEventListener('click', cardClicked);
 });
 
-function showCard(clickCard) { // Show card & keep open to be checked for match
-  clickCard.classList.toggle('show');
-  clickCard.classList.toggle('open');
+
+function showCard(clickedCard) {
+  clickedCard.classList.toggle('show');
+  clickedCard.classList.toggle('open');
+  clickedCard.removeEventListener('click', cardClicked);
 }
 
-function openCard(clickCard) { // Adds to list of open cards
-  openCards.push(clickCard);
+function addOpenCard(clickedCard) {
+  openCards.push(clickedCard);
 }
 
-function checkMatchCard() { // Check for match
+function checkMatchCard(clickedCard) {
   if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
     openCards[0].classList.toggle('match');
     openCards[1].classList.toggle('match');
     openCards = [];
   } else {
-    closeCards();
+    closeCards(clickedCard);
   }
   /*moveCount();
   if (openCards === 8) {
@@ -87,19 +94,21 @@ function checkMatchCard() { // Check for match
   */
 }
 
-function closeCards() { // Close cards if cards don't match
+function closeCards(clickedCard) { // Close cards if cards don't match
   setTimeout(function() {
     showCard(openCards[0]);
     showCard(openCards[1]);
+    openCards[0].addEventListener('click', cardClicked);
+    openCards[1].addEventListener('click', cardClicked);
     openCards = [];
   }, 1000);
 }
-
-/*function moveCount() { //Counts moves
+/*
+function moveCounter() {
 
 }
 
-function gameComplete() { //Alert
+function gameComplete(){
 
 }
 */
