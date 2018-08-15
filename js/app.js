@@ -1,4 +1,5 @@
 let openCards = []; //List to push opened cards to
+let match = [];
 const deck = document.querySelector('.deck');
 let moves = 0;
 
@@ -84,14 +85,15 @@ function checkMatchCard(clickedCard) {
   if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
     openCards[0].classList.toggle('match');
     openCards[1].classList.toggle('match');
+    match.push(...openCards);
     openCards = [];
   } else {
     closeCards(clickedCard);
   }
-  /*if (openCards === 8) {
-    gameComplete();
+  if (match.length === 16) {
+    console.log("CONGRATULATIONS!!!")
+    //gameComplete();
   }
-  */
 }
 
 function closeCards(clickedCard) { // Close cards if cards don't match
@@ -121,6 +123,14 @@ function removeStar() {
   star.remove();
 }
 /*
+function timer() {
+
+}
+
+function restart() {
+
+}
+
 function gameComplete(){
 
 }
