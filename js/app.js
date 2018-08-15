@@ -59,7 +59,8 @@ const cardClicked = function(evt) { //functionality after card is clicked
     addOpenCard(clickedCard);
     if (openCards.length === 2) {
       checkMatchCard(clickedCard);
-      //moveCounter();
+      moveCounter();
+      checkMoves();
     }
   };
 };
@@ -87,7 +88,6 @@ function checkMatchCard(clickedCard) {
   } else {
     closeCards(clickedCard);
   }
-  moveCounter();
   /*if (openCards === 8) {
     gameComplete();
   }
@@ -108,6 +108,17 @@ function moveCounter() {
   moves++
   let moveCount = document.querySelector('.moves');
   moveCount.innerHTML = moves;
+}
+
+function checkMoves() {
+  if (moves === 9 || moves === 12 || moves === 17) {
+    removeStar();
+  }
+}
+
+function removeStar() {
+  const star = document.querySelector('.fa-star');
+  star.remove();
 }
 /*
 function gameComplete(){
