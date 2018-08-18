@@ -123,8 +123,15 @@ function checkMoves() {
 }
 
 function removeStar() {
-  const star = document.querySelector('.fa-star');
+  const star = document.querySelector('.stars li');
   star.remove();
+}
+
+function addStar() {
+  let starList = document.querySelector('.stars');
+  let createStar = document.createElement('li');
+  createStar.insertAdjacentHTML('afterbegin', '<i class="fa fa-star"></i>');
+  starList.appendChild(createStar);
 }
 
 //CREATE TIMER
@@ -171,8 +178,6 @@ function restartGame() {
   }
   openCards = [];
   match = [];
-  moves = 0;
-  moveCount.innerHTML = moves;
   //timer
   stopTime();
   clockOn = false;
@@ -180,6 +185,21 @@ function restartGame() {
   min = 0;
   clockDiv.innerHTML = "00:00";
   //stars
+  if (moves >= 17) {
+    addStar();
+    addStar();
+    addStar();
+  } else if (moves >= 12 && moves < 17) {
+    addStar();
+    addStar();
+  } else if (moves >= 9 && moves < 12) {
+    addStar();
+  } else {
+    
+  }
+  //moves
+  moves = 0;
+  moveCount.innerHTML = moves;
 }
 /*
 function gameComplete(){
