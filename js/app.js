@@ -2,6 +2,7 @@ let openCards = []; //List to push opened cards to
 let match = [];
 const deck = document.querySelector('.deck');
 let moveCount = document.querySelector('.moves');
+let moves = 0;
 const restart = document.querySelector('.restart');
 
 /*
@@ -111,7 +112,6 @@ function closeCards(clickedCard) { // Close cards if cards don't match
 }
 
 function moveCounter() {
-  let moves = 0;
   moves++
   moveCount.innerHTML = moves;
 }
@@ -134,13 +134,14 @@ clockDiv.setAttribute('class', 'timer');
 clockDiv.setAttribute('style', 'float: right; padding-right: 10px;');
 clockDiv.textContent = '00:00';
 scorePanel.appendChild(clockDiv);
+let setTime;
 let clockOn = false;
 let sec = 0;
 let min = 0;
 //
 
 function timer() {
-  let setTime = setInterval(function() {
+  setTime = setInterval(function() {
     sec++;
     if (sec === 60) {
       sec = 0;
@@ -155,6 +156,10 @@ function timer() {
   }, 1000);
 }
 
+function stopTime() {
+  clearInterval(setTime);
+}
+
 restart.addEventListener('click', restartGame);
 
 function restartGame() {
@@ -166,9 +171,14 @@ function restartGame() {
   }
   openCards = [];
   match = [];
-  let moves = 0;
+  moves = 0;
   moveCount.innerHTML = moves;
   //timer
+  stopTime();
+  clockOn = false;
+  sec = 0;
+  min = 0;
+  clockDiv.innerHTML = "00:00";
   //stars
 }
 /*
