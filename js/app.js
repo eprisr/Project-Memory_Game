@@ -97,7 +97,7 @@ function checkMatchCard(clickedCard) {
     closeCards(clickedCard);
   }
   if (match.length === 16) {
-    //gameComplete();
+    gameComplete();
   }
 }
 
@@ -124,7 +124,9 @@ function checkMoves() {
 
 function removeStar() {
   const star = document.querySelector('.stars li');
+  const finalStar = document.querySelector('.final-star');
   star.remove();
+  finalStar.remove();
 }
 
 function addStar() {
@@ -132,6 +134,12 @@ function addStar() {
   let createStar = document.createElement('li');
   createStar.insertAdjacentHTML('afterbegin', '<i class="fa fa-star"></i>');
   starList.appendChild(createStar);
+
+  let finalStarList = document.querySelector('.winning-stars');
+  let img = document.createElement('img');
+  img.src = "assets/AdobeStock_10793869.png"; //ADD IMAGE TO HTML USING JS https://stackoverflow.com/questions/2735881/adding-images-to-the-html-with-javascript
+  img.setAttribute('class', 'final-star');
+  finalStarList.appendChild(img);
 }
 
 //CREATE TIMER
@@ -195,14 +203,45 @@ function restartGame() {
   } else if (moves >= 9 && moves < 12) {
     addStar();
   } else {
-    
+
   }
   //moves
   moves = 0;
   moveCount.innerHTML = moves;
 }
-/*
-function gameComplete(){
 
+function gameComplete(){
+  modal();
+  stopTime();
 }
-*/
+
+function modal(){
+  const modal = document.querySelector('.modal');
+  modal.classList.toggle('hide');
+  modalStats();
+}
+
+modal();
+
+function modalStats(){
+  const finalTime = document.querySelector('.modal-time');
+  const timerTime = clockDiv.innerHTML;
+  const finalMoves = document.querySelector('.modal-moves');
+  finalTime.innerHTML = 'TIME: ' +timerTime;
+  finalMoves.innerHTML = 'MOVES: ' +moves;
+  const congrats = document.querySelector('.congrats');
+  if (moves > 9 && moves < 12) {
+    congrats.innerHTML = 'EXCELLENT!';
+  } else if (moves >= 12 && moves < 17) {
+    congrats.innerHTML = 'GOOD JOB!';
+  } else if (moves >= 17) {
+    congrats.innerHTML = 'TRY AGAIN';
+  } else {
+    
+  }
+}
+
+document.querySelector('.modal-play-again').addEventListener('click', function(){
+  restartGame();
+  modal();
+});
