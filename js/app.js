@@ -55,6 +55,10 @@ displayShuffle();
 
 const cardClicked = function(evt) { //functionality after card is clicked
   const clickedCard = evt.target;
+  if (clockOn === false) {
+    timer();
+    clockOn = true;
+  }
   if (openCards.length < 2) {
     showCard(clickedCard);
     addOpenCard(clickedCard);
@@ -91,7 +95,6 @@ function checkMatchCard(clickedCard) {
     closeCards(clickedCard);
   }
   if (match.length === 16) {
-    console.log("CONGRATULATIONS!!!")
     //gameComplete();
   }
 }
@@ -122,11 +125,35 @@ function removeStar() {
   const star = document.querySelector('.fa-star');
   star.remove();
 }
-/*
+
+//CREATE TIMER
+const scorePanel = document.querySelector('.score-panel');
+const clockDiv = document.createElement('div');
+clockDiv.setAttribute('class', 'timer');
+clockDiv.setAttribute('style', 'float: right; padding-right: 10px;');
+clockDiv.textContent = '00:00';
+scorePanel.appendChild(clockDiv);
+let clockOn = false;
+let sec = 0;
+let min = 0;
+//
+
 function timer() {
-
+  let setTime = setInterval(function() {
+    sec++;
+    if (sec === 60) {
+      sec = 0;
+      min++;
+    } else {
+      min = min;
+    }
+    if (sec < 10) {
+      sec = '0' + sec;
+    }
+    clockDiv.innerHTML = min +":"+ sec;
+  }, 1000);
 }
-
+/*
 function restart() {
 
 }
