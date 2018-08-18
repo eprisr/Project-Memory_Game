@@ -1,5 +1,7 @@
 # Memory Game Project
 
+Provided by UDACITY
+
 ## Table of Contents
 
 * [Instructions](#instructions)
