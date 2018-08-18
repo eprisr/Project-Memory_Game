@@ -1,7 +1,9 @@
 let openCards = []; //List to push opened cards to
 let match = [];
 const deck = document.querySelector('.deck');
+let moveCount = document.querySelector('.moves');
 let moves = 0;
+const restart = document.querySelector('.restart');
 
 /*
  * Create a list that holds all of your cards
@@ -111,7 +113,6 @@ function closeCards(clickedCard) { // Close cards if cards don't match
 
 function moveCounter() {
   moves++
-  let moveCount = document.querySelector('.moves');
   moveCount.innerHTML = moves;
 }
 
@@ -153,11 +154,22 @@ function timer() {
     clockDiv.innerHTML = min +":"+ sec;
   }, 1000);
 }
-/*
-function restart() {
 
+restart.addEventListener('click', restartGame);
+
+function restartGame() {
+  //board
+  displayShuffle();
+  for (card of cards) {
+    card.className = 'card';
+    card.addEventListener('click', cardClicked);
+  }
+  openCards = [];
+  match = [];
+  //timer
+  //stars
 }
-
+/*
 function gameComplete(){
 
 }
