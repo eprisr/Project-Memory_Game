@@ -2,7 +2,6 @@ let openCards = []; //List to push opened cards to
 let match = [];
 const deck = document.querySelector('.deck');
 let moveCount = document.querySelector('.moves');
-let moves = 0;
 const restart = document.querySelector('.restart');
 
 /*
@@ -112,6 +111,7 @@ function closeCards(clickedCard) { // Close cards if cards don't match
 }
 
 function moveCounter() {
+  let moves = 0;
   moves++
   moveCount.innerHTML = moves;
 }
@@ -166,6 +166,8 @@ function restartGame() {
   }
   openCards = [];
   match = [];
+  let moves = 0;
+  moveCount.innerHTML = moves;
   //timer
   //stars
 }
