@@ -42,10 +42,10 @@ h1 {
     min-height: 680px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 		padding: 32px; */
-		width: 900px;
-    min-height: 900px;
-    background: url(../assets/020-shop-bg.svg) no-repeat center;
-    padding: 225px;
+		width: 800px;
+    min-height: 800px;
+    background: url(../assets/020-shop-bg.svg) no-repeat center top;
+    padding: 200px;
     /* border-radius: 10px; */
     /* box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5); */
     display: flex;
@@ -58,8 +58,8 @@ h1 {
 .deck .card {
     /* height: 125px;
 		width: 125px; */
-		height: 100px;
-		width: 100px;
+		height: 90px;
+		width: 90px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -92,6 +92,8 @@ h1 {
  */
 
 .score-panel {
+		position: absolute;
+		top: 80px;
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
