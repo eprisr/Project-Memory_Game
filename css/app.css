@@ -60,8 +60,9 @@ h1 {
 		width: 125px; */
 		height: 90px;
 		width: 90px;
+		padding: 15px;
     background: #2e3d49;
-    font-size: 0;
+    /* font-size: 0; */
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
@@ -77,14 +78,27 @@ h1 {
     cursor: default;
 }
 
-.deck .card.show {
-    font-size: 33px;
+.deck .card.show>* {
+		/* font-size: 33px; */
+		width: 75%;
+		height: 75%;
 }
 
-.deck .card.match {
-    cursor: default;
+.deck .card.match,
+.deck .card.match>* {
     background: #02ccba;
-    font-size: 33px;
+}
+
+.deck .card.match>* {
+    cursor: default;
+		/* font-size: 33px; */
+		width: 75%;
+		height: 75%;z
+}
+
+.deck .card img {
+	width: 0px;
+	height: 0px;
 }
 
 /*
