@@ -132,7 +132,7 @@ function removeStar() {
 function addStar() {
   let starList = document.querySelector('.stars');
   let createStar = document.createElement('li');
-  createStar.insertAdjacentHTML('afterbegin', '<i class="fa fa-star"></i>');
+  createStar.insertAdjacentHTML('afterbegin', '<img src="assets/icons/002-popsicle.png" class="life-icon">');
   starList.appendChild(createStar);
 
   let finalStarList = document.querySelector('.winning-stars');
@@ -215,33 +215,33 @@ function gameComplete(){
   stopTime();
 }
 
-// function modal(){
-//   const modal = document.querySelector('.modal');
-//   modal.classList.toggle('hide');
-//   modalStats();
-// }
+function modal(){
+  const modal = document.querySelector('.modal');
+  modal.classList.toggle('hide');
+  modalStats();
+}
 
-// modal();
+modal();
 
-// function modalStats(){
-//   const finalTime = document.querySelector('.modal-time');
-//   const timerTime = clockDiv.innerHTML;
-//   const finalMoves = document.querySelector('.modal-moves');
-//   finalTime.innerHTML = 'TIME: ' +timerTime;
-//   finalMoves.innerHTML = 'MOVES: ' +moves;
-//   const congrats = document.querySelector('.congrats');
-//   if (moves > 9 && moves < 12) {
-//     congrats.innerHTML = 'EXCELLENT!';
-//   } else if (moves >= 12 && moves < 17) {
-//     congrats.innerHTML = 'GOOD JOB!';
-//   } else if (moves >= 17) {
-//     congrats.innerHTML = 'TRY AGAIN';
-//   } else {
+function modalStats(){
+  const finalTime = document.querySelector('.modal-time');
+  const timerTime = clockDiv.innerHTML;
+  const finalMoves = document.querySelector('.modal-moves');
+  finalTime.innerHTML = 'TIME: ' +timerTime;
+  finalMoves.innerHTML = 'MOVES: ' +moves;
+  const congrats = document.querySelector('.congrats');
+  if (moves > 9 && moves < 12) {
+    congrats.innerHTML = 'EXCELLENT!';
+  } else if (moves >= 12 && moves < 17) {
+    congrats.innerHTML = 'GOOD JOB!';
+  } else if (moves >= 17) {
+    congrats.innerHTML = 'TRY AGAIN';
+  } else {
     
-//   }
-// }
+  }
+}
 
-// document.querySelector('.modal-play-again').addEventListener('click', function(){
-//   restartGame();
-//   modal();
-// });
+document.querySelector('.modal-play-again').addEventListener('click', function(){
+  restartGame();
+  modal();
+});
