@@ -4,6 +4,8 @@ const deck = document.querySelector('.deck');
 let moveCount = document.querySelector('.moves');
 let moves = 0;
 const restart = document.querySelector('.restart');
+const modalEl = document.getElementById('modal-container');
+let modalB = new bootstrap.Modal(modalEl)
 
 /*
  * Create a list that holds all of your cards
@@ -124,9 +126,7 @@ function checkMoves() {
 
 function removeStar() {
   const star = document.querySelector('.stars li');
-  // const finalStar = document.querySelector('.final-star');
   star.remove();
-  // finalStar.remove();
 }
 
 function addStar() {
@@ -134,20 +134,6 @@ function addStar() {
   let createStar = document.createElement('li');
   createStar.insertAdjacentHTML('afterbegin', '<img src="assets/icons/002-popsicle.png" class="life-icon">');
   starList.appendChild(createStar);
-
-  // let finalStarList = document.querySelector('.winning-stars');
-	// let img = document.createElement('img');
-	// if (moves >= 17) {
-	// 	img.src = "assets/046-popsicle-5-3star.svg";
-	// } else if (moves >= 12 && moves < 17) {
-	// 	img.src = "assets/046-popsicle-5-2star.svg";
-	// } else if (moves >= 9 && moves < 12) {
-	// 	img.src = "assets/046-popsicle-5-1star.svg";
-	// } else {
-
-	// }
-  // img.setAttribute('class', 'final-star');
-  // finalStarList.appendChild(img);
 }
 
 //CREATE TIMER
@@ -225,18 +211,8 @@ function gameComplete(){
 		card.classList.add('hide');
 		card.classList.remove('card', 'show', 'open', 'match');
 	}
-  modalA();
-}
-
-function modalA(){
-	const modalB = document.getElementById('modal-container');
-	const modalC = new bootstrap.Modal(modalB)
-	modalB.addEventListener('show.bs.modal', function (event) {
-		// do something...
-		modalStats();
-	})
-	modalC.show();
-  // modal.classList.toggle('hide');
+	modalStats();
+  modalB.toggle();
 }
 
 function modalStats(){
@@ -264,5 +240,5 @@ function modalStats(){
 
 document.querySelector('.modal-play-again').addEventListener('click', function(){
   restartGame();
-  modalA();
+  modalB.toggle();
 });
