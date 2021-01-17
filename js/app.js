@@ -96,9 +96,6 @@ function checkMatchCard(clickedCard) {
   } else {
     closeCards(clickedCard);
   }
-  if (match.length === 16) {
-    gameComplete();
-  }
 }
 
 function closeCards(clickedCard) { // Close cards if cards don't match
@@ -119,14 +116,17 @@ function moveCounter() {
 function checkMoves() {
   if (moves === 9 || moves === 12 || moves === 17) {
     removeStar();
+	}
+	if (match.length === 16) {
+    gameComplete();
   }
 }
 
 function removeStar() {
   const star = document.querySelector('.stars li');
-  const finalStar = document.querySelector('.final-star');
+  // const finalStar = document.querySelector('.final-star');
   star.remove();
-  finalStar.remove();
+  // finalStar.remove();
 }
 
 function addStar() {
@@ -135,11 +135,19 @@ function addStar() {
   createStar.insertAdjacentHTML('afterbegin', '<img src="assets/icons/002-popsicle.png" class="life-icon">');
   starList.appendChild(createStar);
 
-  let finalStarList = document.querySelector('.winning-stars');
-  let img = document.createElement('img');
-  img.src = "assets/AdobeStock_10793869.png"; //ADD IMAGE TO HTML USING JS https://stackoverflow.com/questions/2735881/adding-images-to-the-html-with-javascript
-  img.setAttribute('class', 'final-star');
-  finalStarList.appendChild(img);
+  // let finalStarList = document.querySelector('.winning-stars');
+	// let img = document.createElement('img');
+	// if (moves >= 17) {
+	// 	img.src = "assets/046-popsicle-5-3star.svg";
+	// } else if (moves >= 12 && moves < 17) {
+	// 	img.src = "assets/046-popsicle-5-2star.svg";
+	// } else if (moves >= 9 && moves < 12) {
+	// 	img.src = "assets/046-popsicle-5-1star.svg";
+	// } else {
+
+	// }
+  // img.setAttribute('class', 'final-star');
+  // finalStarList.appendChild(img);
 }
 
 //CREATE TIMER
@@ -192,27 +200,27 @@ function restartGame() {
   sec = 0;
   min = 0;
   clockDiv.innerHTML = "00:00";
-  //stars
+	//stars
   if (moves >= 17) {
-    addStar();
+		addStar();
     addStar();
     addStar();
   } else if (moves >= 12 && moves < 17) {
-    addStar();
+		addStar();
     addStar();
   } else if (moves >= 9 && moves < 12) {
-    addStar();
+		addStar();
   } else {
-
-  }
-  //moves
-  moves = 0;
-  moveCount.innerHTML = moves;
+		
+	}
+	//moves
+	moves = 0;
+	moveCount.innerHTML = moves;
 }
 
 function gameComplete(){
+	stopTime();
   modal();
-  stopTime();
 }
 
 function modal(){
@@ -221,7 +229,7 @@ function modal(){
   modalStats();
 }
 
-modal();
+// modal();
 
 function modalStats(){
   const finalTime = document.querySelector('.modal-time');
@@ -229,13 +237,18 @@ function modalStats(){
   const finalMoves = document.querySelector('.modal-moves');
   finalTime.innerHTML = 'TIME: ' +timerTime;
   finalMoves.innerHTML = 'MOVES: ' +moves;
-  const congrats = document.querySelector('.congrats');
+	const congrats = document.querySelector('.congrats');
+	let finalStarList = document.querySelector('.winning-stars');
+
   if (moves > 9 && moves < 12) {
-    congrats.innerHTML = 'EXCELLENT!';
+		congrats.innerHTML = 'EXCELLENT!';
+		finalStarList.innerHTML = '<img class="final-star" src="assets/046-popsicle-5-2star.svg" alt="star">';
   } else if (moves >= 12 && moves < 17) {
-    congrats.innerHTML = 'GOOD JOB!';
+		congrats.innerHTML = 'GOOD JOB!';
+		finalStarList.innerHTML = '<img class="final-star" src="assets/046-popsicle-5-1star.svg" alt="star">';
   } else if (moves >= 17) {
-    congrats.innerHTML = 'TRY AGAIN';
+		congrats.innerHTML = 'TRY AGAIN';
+		finalStarList.innerHTML = '<img class="final-star" src="assets/icons/039-ice-cream-14.svg" alt="star">';
   } else {
     
   }
