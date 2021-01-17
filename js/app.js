@@ -220,16 +220,24 @@ function restartGame() {
 
 function gameComplete(){
 	stopTime();
-  modal();
+	//Update UI
+	for (card of cards) {
+		card.classList.add('hide');
+		card.classList.remove('card', 'show', 'open', 'match');
+	}
+  modalA();
 }
 
-function modal(){
-  const modal = document.querySelector('.modal');
-  modal.classList.toggle('hide');
-  modalStats();
+function modalA(){
+	const modalB = document.getElementById('modal-container');
+	const modalC = new bootstrap.Modal(modalB)
+	modalB.addEventListener('show.bs.modal', function (event) {
+		// do something...
+		modalStats();
+	})
+	modalC.show();
+  // modal.classList.toggle('hide');
 }
-
-// modal();
 
 function modalStats(){
   const finalTime = document.querySelector('.modal-time');
@@ -251,10 +259,10 @@ function modalStats(){
 		finalStarList.innerHTML = '<img class="final-star" src="assets/icons/039-ice-cream-14.svg" alt="star">';
   } else {
     
-  }
+	}
 }
 
 document.querySelector('.modal-play-again').addEventListener('click', function(){
   restartGame();
-  modal();
+  modalA();
 });
