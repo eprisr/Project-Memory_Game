@@ -33,6 +33,11 @@ h1 {
     font-weight: 300;
 }
 
+/* https://stackoverflow.com/questions/10614481/disable-double-tap-zoom-option-in-browser-on-touch-devices/53236027#53236027 */
+.disable-dbl-tap-zoom {
+  touch-action: manipulation;
+}
+
 /*
  * Styles for the deck of cards
  */
