@@ -5,7 +5,9 @@ let moveCount = document.querySelector('.moves');
 let moves = 0;
 const restart = document.querySelector('.restart');
 const modalEl = document.getElementById('modal-container');
-let modalB = new bootstrap.Modal(modalEl)
+let modalB = new bootstrap.Modal(modalEl, {
+	backdrop: false
+})
 
 /*
  * Create a list that holds all of your cards

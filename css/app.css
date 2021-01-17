@@ -154,17 +154,23 @@ h1 {
     /* background: rgba(0, 0, 0, .6); */
 }
 
-.modal-box {
+.modal-content {
     position: absolute;
     width: 500px;
-    height: 300px;
 		overflow: visible;
 		margin: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+		top: 165px;
 		text-align: center;
+
+		background-color: rgba(0, 0, 0, 0);
+		background-clip: unset;
+		border: none;
+		border-radius: unset;
+		outline: none;
+}
+
+.modal-footer {
+	justify-content: center;
 }
 
 .winning-stars {
